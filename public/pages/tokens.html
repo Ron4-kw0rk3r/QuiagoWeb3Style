@@ -6,40 +6,447 @@
     <title>TkensKircho - QuiagoApp</title>
     <link rel="stylesheet" href="../styles/quiago.css">
     <link rel="stylesheet" href="../styles/tokens.css">
+    <link rel="icon" type="image/x-icon" href="../res/icons/OficialQuiagoPresentacion.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div class="particles-background"></div>
+    
+    <!-- Botón para volver -->
+    <a href="../quiago.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Volver a Quiago
+    </a>
+
     <section class="tokens-section">
-        <h2 class="glowing-text">TkensKircho (TKC)</h2>
-        
         <div class="token-overview">
-            <div class="token-stats">
+            <div class="token-header">
+                <div class="tks-coin">
+                    <div class="coin-face">TKS</div>
+                </div>
+                <style>
+                    .tks-coin {
+                        position: relative;
+                        width: 100px;
+                        height: 100px;
+                        background: linear-gradient(45deg, #ffd700, #ffa500);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+                        margin: 0 auto;
+                        animation: coinRotate 3s infinite linear;
+                    }
+                    .coin-face {
+                        color: white;
+                        font-weight: bold;
+                        font-size: 24px;
+                        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+                    }
+                    @keyframes coinRotate {
+                        0% { transform: rotateY(0deg); }
+                        100% { transform: rotateY(360deg); }
+                    }
+                    .back-button {
+                        position: fixed;
+                        top: 20px;
+                        left: 20px;
+                        padding: 10px 20px;
+                        background: rgba(124, 77, 255, 0.2);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 20px;
+                        backdrop-filter: blur(10px);
+                        border: 1px solid rgba(255, 255, 255, 0.18);
+                        transition: all 0.3s ease;
+                        z-index: 1000;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    }
+                    .back-button:hover {
+                        background: rgba(124, 77, 255, 0.4);
+                        transform: translateY(-2px);
+                    }
+                </style>
+                <h1>QuiagoToken (QGO)</h1>
+                <p>El token que impulsa el ecosistema Quiago</p>
+            </div>
+            <br>
+            <div class="token-stats" style="margin-top: 30px;">
                 <div class="stat-card">
+                    <i class="fas fa-coins stat-icon"></i>
                     <h3>Suministro Total</h3>
-                    <p class="stat-value">1,000,000 TKC</p>
+                    <p>1,000,000 QGO</p>
+                    <div class="stat-progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
                 </div>
+
                 <div class="stat-card">
+                    <i class="fas fa-chart-line stat-icon"></i>
                     <h3>Precio Actual</h3>
-                    <p class="stat-value">$0.45 USD</p>
+                    <p>$0.50 USD</p>
+                    <div class="stat-progress">
+                        <div class="progress-bar" style="width: 75%"></div>
+                    </div>
                 </div>
+
                 <div class="stat-card">
+                    <i class="fas fa-users stat-icon"></i>
                     <h3>Holders</h3>
-                    <p class="stat-value">15,234</p>
+                    <p>5,000+</p>
+                    <div class="stat-progress">
+                        <div class="progress-bar" style="width: 60%"></div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <i class="fas fa-exchange-alt stat-icon"></i>
+                    <h3>Volumen 24h</h3>
+                    <p>$100,000 USD</p>
+                    <div class="stat-progress">
+                        <div class="progress-bar" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>Seguridad</h3>
+                    <p>Protocolo de seguridad avanzado y auditorías regulares</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Velocidad</h3>
+                    <p>Transacciones rápidas y eficientes</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Accesibilidad</h3>
+                    <p>Disponible globalmente 24/7</p>
                 </div>
             </div>
 
             <div class="token-distribution">
-                <h3>Distribución de Tokens</h3>
                 <div class="distribution-chart">
-                    <!-- Aquí iría el gráfico de distribución -->
+                    <canvas id="distributionChart"></canvas>
                 </div>
-                <ul class="distribution-list">
-                    <li><span class="dot community"></span>Comunidad: 40%</li>
-                    <li><span class="dot rewards"></span>Recompensas: 30%</li>
-                    <li><span class="dot team"></span>Equipo: 15%</li>
-                    <li><span class="dot reserve"></span>Reserva: 15%</li>
-                </ul>
+                <div class="distribution-info">
+                    <h2>Distribución de Tokens</h2>
+                    <ul class="distribution-list">
+                        <li><span class="dot" style="background: #7C4DFF"></span>Venta Pública (40%)</li>
+                        <li><span class="dot" style="background: #B388FF"></span>Reserva (30%)</li>
+                        <li><span class="dot" style="background: #9575CD"></span>Equipo (20%)</li>
+                        <li><span class="dot" style="background: #D1C4E9"></span>Marketing (10%)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="roadmap-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3>Q1 2024</h3>
+                    <p>Lanzamiento del Token</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3>Q2 2024</h3>
+                    <p>Listado en Exchanges</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3>Q3 2024</h3>
+                    <p>Expansión Global</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3>Q4 2024</h3>
+                    <p>Nuevas Funcionalidades</p>
+                </div>
             </div>
         </div>
     </section>
+
+    <style>
+        /* Estilos Generales */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            background: #1a1a1a;
+        }
+
+        .tokens-section {
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .token-header, .stat-card, .feature-card, .token-distribution, .timeline-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .token-header:hover, .stat-card:hover, .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+        }
+
+        /* Estilos para Desktop */
+        @media screen and (min-width: 1024px) {
+            .token-overview {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+
+            .token-stats {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .stat-card {
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2.5rem;
+                padding: 2rem 0;
+            }
+
+            .feature-card {
+                padding: 2.5rem;
+                text-align: center;
+            }
+
+            .token-distribution {
+                display: grid;
+                grid-template-columns: 1.2fr 0.8fr;
+                gap: 3rem;
+                padding: 3rem;
+                margin: 3rem 0;
+            }
+
+            .roadmap-timeline {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+                padding: 2rem 0;
+            }
+        }
+
+        /* Estilos para Mobile */
+        @media screen and (max-width: 1023px) {
+            .token-overview {
+                padding: 1rem;
+            }
+
+            .token-stats {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1rem 0;
+            }
+
+            .feature-card {
+                padding: 2rem;
+                text-align: center;
+                margin: 0.5rem 0;
+            }
+
+            .token-distribution {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .distribution-chart {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .roadmap-timeline {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                padding: 1rem;
+            }
+
+            .token-header {
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .token-header img {
+                width: 80px;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Estilos Mejorados para Elementos */
+        .stat-icon {
+            font-size: 2.5em;
+            margin-bottom: 1.5rem;
+            color: #7C4DFF;
+            background: -webkit-linear-gradient(45deg, #7C4DFF, #B388FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card i {
+            font-size: 3em;
+            margin-bottom: 1.5rem;
+            background: -webkit-linear-gradient(45deg, #7C4DFF, #B388FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover i {
+            transform: scale(1.3) rotate(5deg);
+        }
+
+        .stat-progress {
+            background: rgba(124, 77, 255, 0.2);
+            border-radius: 10px;
+            height: 8px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(45deg, #7C4DFF, #B388FF);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+
+        .distribution-list li {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+        .timeline-item {
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #7C4DFF;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        /* Animaciones Adicionales */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .token-logo {
+            animation: pulse 2s infinite;
+        }
+
+        .glowing-text {
+            text-shadow: 0 0 10px rgba(124, 77, 255, 0.5);
+        }
+    </style>
+
+    <script>
+        // Configuración del gráfico de distribución
+        window.onload = function() {
+            var ctx = document.getElementById('distributionChart').getContext('2d');
+            var distributionChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Venta Pública', 'Reserva', 'Equipo', 'Marketing'],
+                    datasets: [{
+                        data: [40, 30, 20, 10],
+                        backgroundColor: ['#7C4DFF', '#B388FF', '#9575CD', '#D1C4E9'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+        };
+
+        // Animaciones con GSAP
+        gsap.from(".token-header", {
+            duration: 1,
+            y: -50,
+            opacity: 0,
+            ease: "power3.out"
+        });
+
+        gsap.from(".stat-card", {
+            duration: 0.8,
+            y: 50,
+            opacity: 0,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        gsap.from(".feature-card", {
+            duration: 0.8,
+            scale: 0.8,
+            opacity: 0,
+            stagger: 0.2,
+            ease: "back.out(1.7)"
+        });
+    </script>
 </body>
-</html> 
+</html>

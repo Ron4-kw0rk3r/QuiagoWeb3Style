@@ -6,38 +6,282 @@
     <title>Novedades - QuiagoApp</title>
     <link rel="stylesheet" href="../styles/quiago.css">
     <link rel="stylesheet" href="../styles/novedades.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body>
-    <section class="novedades-section">
-        <h2 class="glowing-text">Últimas Novedades</h2>
+<body style="background: linear-gradient(135deg, #1a1f35 0%, #0a0c17 100%); color: #ffffff; font-family: 'Montserrat', sans-serif;">
+    <!-- Botón para volver -->
+    <a href="../quiago.html" class="back-button" style="
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        background: rgba(124, 77, 255, 0.2);
+        color: white;
+        text-decoration: none;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 8px;">
+        <i class="fas fa-arrow-left"></i> Volver a Quiago
+    </a>
+
+    <section class="novedades-section" style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+        <h2 class="glowing-text" style="
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+            font-weight: 600;
+            letter-spacing: 2px;">
+            <i class="fas fa-newspaper" style="margin-right: 1rem;"></i>
+            Ultimas Novedades
+        </h2>
         
-        <div class="news-grid">
-            <article class="news-card">
-                <div class="news-image">
-                    <img src="../images/news/update-1.jpg" alt="Nueva actualización">
-                    <span class="news-tag">Actualización</span>
+        <div class="news-grid" style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;">
+            
+            <article class="news-card" style="
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+                overflow: hidden;
+                backdrop-filter: blur(10px);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);"
+                onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.3)';"
+                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.2)';">
+                
+                <div class="news-image" style="position: relative;">
+                    <img src="https://w7.pngwing.com/pngs/789/821/png-transparent-arrows-cogwheel-system-system-update-update-network-and-communications-icon-thumbnail.png" alt="Nueva actualización" style="width: 100%; height: 200px; object-fit: cover;background-color: #000;">
+                    <span class="news-tag" style="
+                        position: absolute;
+                        top: 1rem;
+                        right: 1rem;
+                        background: #4CAF50;
+                        padding: 0.5rem 1rem;
+                        border-radius: 25px;
+                        font-size: 0.8rem;
+                        font-weight: 500;">
+                        <i class="fas fa-sync-alt"></i> Actualización
+                    </span>
                 </div>
-                <div class="news-content">
-                    <h3>Nueva Actualización 2.0</h3>
-                    <p class="news-date">15 de Marzo, 2024</p>
-                    <p>Implementación de realidad aumentada en sitios históricos de La Paz y Potosí.</p>
-                    <a href="#" class="read-more">Leer más →</a>
+                
+                <div class="news-content" style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem; color: #4CAF50;">Nueva Actualización 2.0</h3>
+                    <p class="news-date" style="
+                        font-size: 0.9rem;
+                        color: #a8b2d1;
+                        margin-bottom: 1rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;">
+                        <i class="far fa-calendar-alt"></i>
+                        15 de Marzo, 2024
+                    </p>
+                    <p style="
+                        line-height: 1.6;
+                        margin-bottom: 1.5rem;
+                        color: #e6e9f0;">
+                        Integración de datos turísticos en blockchain y mapas interactivos de La Paz y Potosí. Explora monumentos y lugares emblemáticos con información verificada y geolocalización precisa.
+                    </p>
+                    <a href="#" class="read-more" style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        color: #4CAF50;
+                        text-decoration: none;
+                        font-weight: 500;
+                        transition: gap 0.3s ease;"
+                        onmouseover="this.style.gap='0.8rem'"
+                        onmouseout="this.style.gap='0.5rem'">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </article>
 
-            <article class="news-card">
-                <div class="news-image">
-                    <img src="../images/news/event-1.jpg" alt="Evento especial">
-                    <span class="news-tag">Evento</span>
+            <article class="news-card" style="
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+                overflow: hidden;
+                backdrop-filter: blur(10px);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);"
+                onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.3)';"
+                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.2)';">
+                
+                <div class="news-image" style="position: relative;">
+                    <img src="../images/news/event-1.jpg" alt="Evento especial" style="width: 100%; height: 200px; object-fit: cover;">
+                    <span class="news-tag" style="
+                        position: absolute;
+                        top: 1rem;
+                        right: 1rem;
+                        background: #2196F3;
+                        padding: 0.5rem 1rem;
+                        border-radius: 25px;
+                        font-size: 0.8rem;
+                        font-weight: 500;">
+                        <i class="fas fa-calendar-check"></i> Evento
+                    </span>
                 </div>
-                <div class="news-content">
-                    <h3>Festival Crypto-Turístico</h3>
-                    <p class="news-date">10 de Marzo, 2024</p>
-                    <p>Primer evento que combina turismo y tecnología blockchain en Santa Cruz.</p>
-                    <a href="#" class="read-more">Leer más →</a>
+                
+                <div class="news-content" style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem; color: #2196F3;">Innovación Blockchain en Finanzas Descentralizadas</h3>
+                    <p class="news-date" style="
+                        font-size: 0.9rem;
+                        color: #a8b2d1;
+                        margin-bottom: 1rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;">
+                        <i class="far fa-calendar-alt"></i>
+                        10 de Marzo, 2024
+                    </p>
+                    <div class="content-sections" style="
+                        display: grid;
+                        gap: 1rem;
+                        margin-bottom: 1.5rem;">
+                        <p style="
+                            line-height: 1.6;
+                            color: #e6e9f0;">
+                            Exploramos las últimas tendencias en DeFi y cómo la tecnología blockchain está revolucionando el sistema financiero tradicional. Análisis detallado de protocolos descentralizados y su impacto en la economía digital.
+                        </p>
+                        <div class="tech-highlights" style="
+                            background: rgba(33, 150, 243, 0.1);
+                            padding: 1rem;
+                            border-radius: 10px;">
+                            <h4 style="color: #2196F3; margin-bottom: 0.5rem;">Aspectos Destacados:</h4>
+                            <ul style="color: #e6e9f0; list-style-type: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem;">• Smart Contracts y Automatización</li>
+                                <li style="margin-bottom: 0.5rem;">• Tokenización de Activos</li>
+                                <li>• Seguridad en Blockchain</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="#" class="read-more" style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        color: #2196F3;
+                        text-decoration: none;
+                        font-weight: 500;
+                        transition: gap 0.3s ease;"
+                        onmouseover="this.style.gap='0.8rem'"
+                        onmouseout="this.style.gap='0.5rem'">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+
+
+                <div class="news-content" style="padding: 1.5rem; margin-top: 2rem; border-top: 1px solid rgba(168, 178, 209, 0.1);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem; color: #2196F3;">Sistemas de Posicionamiento Global: Más Allá del GPS</h3>
+                    <p class="news-date" style="
+                        font-size: 0.9rem;
+                        color: #a8b2d1;
+                        margin-bottom: 1rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;">
+                        <i class="far fa-calendar-alt"></i>
+                        5 de Marzo, 2024
+                    </p>
+                    <div class="content-sections" style="
+                        display: grid;
+                        gap: 1rem;
+                        margin-bottom: 1.5rem;">
+                        <p style="
+                            line-height: 1.6;
+                            color: #e6e9f0;">
+                            Exploramos los avances en tecnología de geolocalización y cómo los nuevos sistemas están mejorando la precisión y confiabilidad. Desde Galileo hasta GLONASS, analizamos las alternativas al GPS tradicional.
+                        </p>
+                        <div class="tech-highlights" style="
+                            background: rgba(33, 150, 243, 0.1);
+                            padding: 1rem;
+                            border-radius: 10px;">
+                            <h4 style="color: #2196F3; margin-bottom: 0.5rem;">Sistemas Destacados:</h4>
+                            <ul style="color: #e6e9f0; list-style-type: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem;">• Sistema Galileo (Europa)</li>
+                                <li style="margin-bottom: 0.5rem;">• GLONASS (Rusia)</li>
+                                <li>• BeiDou (China)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="#" class="read-more" style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        color: #2196F3;
+                        text-decoration: none;
+                        font-weight: 500;
+                        transition: gap 0.3s ease;"
+                        onmouseover="this.style.gap='0.8rem'"
+                        onmouseout="this.style.gap='0.5rem'">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="news-content" style="padding: 1.5rem; margin-top: 2rem; border-top: 1px solid rgba(168, 178, 209, 0.1);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem; color: #2196F3;">Crisis Ambiental: Soluciones Tecnológicas para el Cambio Climático</h3>
+                    <p class="news-date" style="
+                        font-size: 0.9rem;
+                        color: #a8b2d1;
+                        margin-bottom: 1rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;">
+                        <i class="far fa-calendar-alt"></i>
+                        1 de Marzo, 2024
+                    </p>
+                    <div class="content-sections" style="
+                        display: grid;
+                        gap: 1rem;
+                        margin-bottom: 1.5rem;">
+                        <p style="
+                            line-height: 1.6;
+                            color: #e6e9f0;">
+                            Análisis de las últimas innovaciones tecnológicas para combatir el cambio climático y proteger nuestros ecosistemas. Desde la captura de carbono hasta las energías renovables, exploramos soluciones para un futuro sostenible.
+                        </p>
+                        <div class="tech-highlights" style="
+                            background: rgba(33, 150, 243, 0.1);
+                            padding: 1rem;
+                            border-radius: 10px;">
+                            <h4 style="color: #2196F3; margin-bottom: 0.5rem;">Áreas de Innovación:</h4>
+                            <ul style="color: #e6e9f0; list-style-type: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem;">• Tecnologías de Captura de CO2</li>
+                                <li style="margin-bottom: 0.5rem;">• Sistemas de Monitoreo Ambiental</li>
+                                <li>• Energías Renovables Avanzadas</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="#" class="read-more" style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        color: #2196F3;
+                        text-decoration: none;
+                        font-weight: 500;
+                        transition: gap 0.3s ease;"
+                        onmouseover="this.style.gap='0.8rem'"
+                        onmouseout="this.style.gap='0.5rem'">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
                 </div>
             </article>
         </div>
     </section>
+
+    <style>
+        .back-button:hover {
+            background: rgba(124, 77, 255, 0.4);
+            transform: translateY(-2px);
+        }
+    </style>
 </body>
-</html> 
+</html>

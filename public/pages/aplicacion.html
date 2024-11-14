@@ -7,10 +7,34 @@
     <link rel="stylesheet" href="../styles/quiago.css">
     <link rel="stylesheet" href="../styles/aplicacion.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="../res/icons/OficialQuiagoPresentacion.ico">
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/qrcode-generator"></script>
 </head>
 <body style="background: #ffffff; margin: 0; font-family: 'Segoe UI', sans-serif;">
+    <a href="../quiago.html" class="back-button" style="
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        background: rgba(124, 77, 255, 0.2);
+        color: white;
+        text-decoration: none;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 8px;">
+        <i class="fas fa-arrow-left"></i> Volver a Quiago
+    </a>
     <section class="app-section" style="padding: 4rem 2rem;">
-        <h2 class="glowing-text" style="text-align: center; font-size: 2.5rem; color: #1a1f35; margin-bottom: 3rem;">
+        <h2 class="glowing-text" style="text-align: center; font-size: 2.5rem; color: #1a1f35; margin-bottom: 3rem; text-shadow: 0 0 10px rgba(26, 31, 53, 0.5);">
             Nuestra Aplicación
         </h2>
 
@@ -25,7 +49,8 @@
                 background: linear-gradient(145deg, #020003, #010f27);
                 padding: 3rem;
                 border-radius: 20px;
-                color: #ffffff;">
+                color: #ffffff;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
 
                 <div class="app-preview" style="flex: 1;">
                     <div class="phone-mockup" style="
@@ -33,10 +58,27 @@
                         padding: 15px;
                         border-radius: 40px;
                         box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
-                        <img src="../images/app-preview.png" alt="QuiagoApp Preview" style="
+                        <div style="
                             width: 100%;
+                            height: 500px;
                             border-radius: 25px;
-                            display: block;">
+                            background: linear-gradient(45deg, #1a1f35, #2a3045);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            position: relative;
+                            overflow: hidden;">
+                            <i class="fas fa-mobile-alt" style="font-size: 8rem; color: #4a90e2; opacity: 0.2; animation: float 3s ease-in-out infinite;"></i>
+                            <div style="
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                text-align: center;">
+                                <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: #4CAF50; margin-bottom: 1rem; filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.5));"></i>
+                                <p style="color: #ffffff; font-size: 1.2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">QuiagoApp Preview</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -46,11 +88,53 @@
                         padding: 1.5rem;
                         border-radius: 15px;
                         margin-bottom: 1.5rem;
-                        backdrop-filter: blur(10px);">
-                        <i class="fas fa-map-marked-alt" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                        backdrop-filter: blur(10px);
+                        transition: transform 0.3s ease;
+                        cursor: pointer;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
+                        <i class="fas fa-map-marked-alt" style="font-size: 2rem; margin-bottom: 1rem; color: #4CAF50;"></i>
                         <div class="feature-text">
-                            <h3 style="margin-bottom: 0.5rem;">Mapas Offline</h3>
-                            <p style="opacity: 0.9;">Explora Bolivia sin necesidad de conexión a internet. Descarga mapas detallados y guías turísticas.</p>
+                            <h3 style="margin-bottom: 0.5rem;">Navegación GPS Sin Conexión</h3>
+                            <p style="opacity: 0.9;">Explora Bolivia con nuestro sistema de navegación GPS que funciona sin internet. Incluye mapas detallados, puntos de interés y rutas preestablecidas para toda Bolivia.</p>
+                        </div>
+                        
+                        <!-- Animación GPS y Satélite -->
+                        <div class="gps-animation" style="
+                            height: 100px;
+                            position: relative;
+                            margin-top: 1rem;
+                            overflow: hidden;">
+                            <div class="earth" style="
+                                width: 60px;
+                                height: 60px;
+                                background: radial-gradient(circle at 30% 30%, #4CAF50, #1a472a);
+                                border-radius: 50%;
+                                position: absolute;
+                                left: 50%;
+                                top: 50%;
+                                transform: translate(-50%, -50%);
+                                animation: rotate 10s linear infinite;">
+                            </div>
+                            <div class="satellite" style="
+                                width: 20px;
+                                height: 20px;
+                                background: silver;
+                                position: absolute;
+                                left: 50%;
+                                top: 0;
+                                transform-origin: 0 50px;
+                                animation: orbit 5s linear infinite;">
+                                <div style="
+                                    width: 30px;
+                                    height: 2px;
+                                    background: rgba(76, 175, 80, 0.5);
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);">
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -59,11 +143,15 @@
                         padding: 1.5rem;
                         border-radius: 15px;
                         margin-bottom: 1.5rem;
-                        backdrop-filter: blur(10px);">
-                        <i class="fas fa-camera" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                        backdrop-filter: blur(10px);
+                        transition: transform 0.3s ease;
+                        cursor: pointer;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
+                        <i class="fas fa-compass" style="font-size: 2rem; margin-bottom: 1rem; color: #FF9800;"></i>
                         <div class="feature-text">
-                            <h3 style="margin-bottom: 0.5rem;">Realidad Aumentada</h3>
-                            <p style="opacity: 0.9;">Descubre información histórica en tiempo real. Apunta tu cámara a monumentos y lugares históricos.</p>
+                            <h3 style="margin-bottom: 0.5rem;">Guía Turística Inteligente</h3>
+                            <p style="opacity: 0.9; font-size: 0.9rem;">Descubre los mejores lugares turísticos con información detallada, horarios de atención, precios actualizados, recomendaciones de la comunidad.</p>
                         </div>
                     </div>
 
@@ -72,30 +160,80 @@
                         padding: 1.5rem;
                         border-radius: 15px;
                         margin-bottom: 1.5rem;
-                        backdrop-filter: blur(10px);">
-                        <i class="fas fa-wallet" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                        backdrop-filter: blur(10px);
+                        transition: transform 0.3s ease;
+                        cursor: pointer;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
+                        <i class="fas fa-coins" style="font-size: 2rem; margin-bottom: 1rem; color: #FFD700;"></i>
                         <div class="feature-text">
-                            <h3 style="margin-bottom: 0.5rem;">Wallet Integrada</h3>
-                            <p style="opacity: 0.9;">Gestiona tus TkensKircho directamente en la app. Paga servicios y obtén recompensas.</p>
+                            <h3 style="margin-bottom: 0.5rem;">Sistema de Recompensas</h3>
+                            <p style="opacity: 0.9;">Gana puntos por visitar lugares turísticos, compartir fotos y reseñas de tus experiencias, y participar en la comunidad. Canjea tus puntos acumulados por descuentos exclusivos en hoteles de 3-5 estrellas, restaurantes tradicionales y de alta cocina, tours guiados, museos, sitios arqueológicos y otras atracciones turísticas asociadas. Mientras más interactúes con la app, mayores serán tus recompensas y beneficios.</p>
                         </div>
                     </div>
 
                     <div class="download-section" style="text-align: center; margin-top: 2rem;">
-                        <h3 style="margin-bottom: 1.5rem;">Descarga Ahora</h3>
+                        <h3 style="margin-bottom: 1.5rem; color: #4CAF50;">Descarga Ahora</h3>
                         <div class="store-buttons" style="display: flex; gap: 1rem; justify-content: center;">
-                            <a href="#" class="store-button" style="
+                            <a href="https://apps.apple.com/bo/app/quiago" target="_blank" class="store-button" style="
                                 background: #000;
                                 padding: 0.8rem 2rem;
                                 border-radius: 10px;
-                                transition: transform 0.3s ease;">
-                                <img src="../images/app-store.png" alt="App Store" style="height: 40px;">
+                                transition: all 0.3s ease;
+                                display: flex;
+                                align-items: center;
+                                gap: 0.5rem;
+                                text-decoration: none;
+                                color: #ffffff;
+                                box-shadow: 0 4px 15px rgba(0,0,0,0.2);"
+                                onmouseover="this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.transform='scale(1)'">
+                                <i class="fab fa-apple" style="font-size: 2rem; color: #ffffff;"></i>
+                                <div style="text-align: left;">
+                                    <div style="font-size: 0.7rem;">Descarga en</div>
+                                    <div style="font-size: 1.2rem;">App Store</div>
+                                </div>
                             </a>
-                            <a href="#" class="store-button" style="
+                            <a href="https://play.google.com/store/apps/details?id=com.quiago" target="_blank" class="store-button" style="
                                 background: #000;
                                 padding: 0.8rem 2rem;
                                 border-radius: 10px;
-                                transition: transform 0.3s ease;">
-                                <img src="../images/play-store.png" alt="Play Store" style="height: 40px;">
+                                transition: all 0.3s ease;
+                                display: flex;
+                                align-items: center;
+                                gap: 0.5rem;
+                                text-decoration: none;
+                                color: #ffffff;
+                                box-shadow: 0 4px 15px rgba(0,0,0,0.2);"
+                                onmouseover="this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.transform='scale(1)'">
+                                <i class="fab fa-google-play" style="font-size: 2rem; color: #4CAF50;"></i>
+                                <div style="text-align: left;">
+                                    <div style="font-size: 0.7rem;">Disponible en</div>
+                                    <div style="font-size: 1.2rem;">Play Store</div>
+                                </div>
+                            </a>
+
+                            <a href="../downloads/quiago.apk" download class="store-button glow-hover" style="
+                                background: #1a1f35;
+                                padding: 0.8rem;
+                                width: 80%;
+                                border-radius: 10px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 0.5rem;
+                                text-decoration: none;
+                                color: #ffffff;
+                                transition: all 0.3s ease;
+                                margin-top: 1rem;"
+                                onmouseover="this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.transform='scale(1)'">
+                                <i class="fas fa-download" style="font-size: 1.8rem; color: #4CAF50;"></i>
+                                <div style="text-align: left;">
+                                    <div style="font-size: 0.7rem;">Descarga</div>
+                                    <div style="font-size: 1.1rem;">Directa APK</div>
+                                </div>
                             </a>
                         </div>
                     </div>
@@ -104,95 +242,209 @@
         </div>
 
         <!-- Vista Mobile -->
+
         <div class="mobile-view" style="display: none;">
+            <!-- Botón Volver -->
+            <a href="javascript:history.back()" class="back-button" style="
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 100;
+                background: rgba(255,255,255,0.1);
+                backdrop-filter: blur(10px);
+                padding: 0.8rem;
+                border-radius: 50%;
+                color: #ffffff;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                transition: all 0.3s ease;"
+                onmouseover="this.style.transform='scale(1.1)'"
+                onmouseout="this.style.transform='scale(1)'">
+                <i class="fas fa-arrow-left" style="font-size: 1.2rem;"></i>
+            </a>
+
             <div class="app-container" style="
-                padding: 1rem;
+                width: 100%;
+                padding: 1.5rem;
                 background: linear-gradient(145deg, #020003, #010f27);
-                border-radius: 20px;
                 color: #ffffff;">
 
-                <div class="app-preview" style="margin-bottom: 2rem;">
-                    <img src="../images/app-preview.png" alt="QuiagoApp Preview" style="
-                        width: 100%;
-                        max-width: 300px;
-                        margin: 0 auto;
-                        display: block;
-                        border-radius: 15px;">
+                <!-- Mockup del teléfono móvil con animación -->
+                <div class="app-preview glass-effect" style="
+                    margin: 2rem auto;
+                    max-width: 280px;
+                    animation: float 6s ease-in-out infinite;">
+                    <div class="phone-mockup morphism" style="
+                        background: #000;
+                        padding: 12px;
+                        border-radius: 30px;
+                        box-shadow: 0 15px 30px rgba(0,0,0,0.4);">
+                        <div class="device-screen" style="
+                            width: 100%;
+                            height: 400px;
+                            border-radius: 20px;
+                            background: linear-gradient(45deg, #1a1f35, #2a3045);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            position: relative;
+                            overflow: hidden;">
+                            
+                            <!-- Animación GPS y Satélite -->
+                            <div class="gps-animation" style="
+                                height: 150px;
+                                width: 150px;
+                                position: relative;">
+                                <div class="earth bloom-effect" style="
+                                    width: 50px;
+                                    height: 50px;
+                                    background: radial-gradient(circle at 30% 30%, #4CAF50, #1a472a);
+                                    border-radius: 50%;
+                                    position: absolute;
+                                    left: 50%;
+                                    top: 50%;
+                                    transform: translate(-50%, -50%);
+                                    animation: rotate 10s linear infinite;">
+                                </div>
+                                <div class="satellite glow-hover" style="
+                                    width: 15px;
+                                    height: 15px;
+                                    background: silver;
+                                    position: absolute;
+                                    left: 50%;
+                                    top: 0;
+                                    transform-origin: 0 40px;
+                                    animation: orbit 5s linear infinite;">
+                                    <div class="edge-glow" style="
+                                        width: 25px;
+                                        height: 2px;
+                                        background: rgba(76, 175, 80, 0.5);
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%);">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="features-list">
-                    <div class="feature-item" style="
-                        background: rgba(255,255,255,0.1);
-                        padding: 1rem;
-                        border-radius: 10px;
-                        margin-bottom: 1rem;">
-                        <i class="fas fa-map-marked-alt" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                <!-- Lista de características con efectos -->
+                <div class="features-list" style="margin-top: 2rem;">
+                    <div class="feature-item glass-effect bloom-effect" style="
+                        padding: 1.2rem;
+                        border-radius: 12px;
+                        margin-bottom: 1rem;
+                        transition: transform 0.3s ease;"
+                        onmouseover="this.style.transform='scale(1.02)'"
+                        onmouseout="this.style.transform='scale(1)'">
+                        <i class="fas fa-map-marked-alt" style="font-size: 1.8rem; margin-bottom: 0.8rem; color: #4CAF50;"></i>
                         <div class="feature-text">
-                            <h3 style="font-size: 1.2rem;">Mapas Offline</h3>
-                            <p style="font-size: 0.9rem;">Explora Bolivia sin conexión</p>
+                            <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem;">Navegación GPS Sin Conexión</h3>
+                            <p style="opacity: 0.9; font-size: 0.9rem;">Explora Bolivia con nuestro sistema de navegación GPS offline.</p>
                         </div>
                     </div>
 
-                    <div class="feature-item" style="
-                        background: rgba(255,255,255,0.1);
-                        padding: 1rem;
-                        border-radius: 10px;
-                        margin-bottom: 1rem;">
-                        <i class="fas fa-camera" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                    <div class="feature-item glass-effect bloom-effect" style="
+                        padding: 1.2rem;
+                        border-radius: 12px;
+                        margin-bottom: 1rem;
+                        transition: transform 0.3s ease;"
+                        onmouseover="this.style.transform='scale(1.02)'"
+                        onmouseout="this.style.transform='scale(1)'">
+                        <i class="fas fa-compass" style="font-size: 1.8rem; margin-bottom: 0.8rem; color: #FF9800;"></i>
                         <div class="feature-text">
-                            <h3 style="font-size: 1.2rem;">Realidad Aumentada</h3>
-                            <p style="font-size: 0.9rem;">Información histórica en vivo</p>
+                            <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem;">Guía Turística Inteligente</h3>
+                            <p style="opacity: 0.9; font-size: 0.9rem;">Descubre los mejores lugares turísticos con información detallada, horarios de atención, precios actualizados, recomendaciones de la comunidad.</p>
                         </div>
                     </div>
 
-                    <div class="feature-item" style="
-                        background: rgba(255,255,255,0.1);
-                        padding: 1rem;
-                        border-radius: 10px;
-                        margin-bottom: 1rem;">
-                        <i class="fas fa-wallet" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                    <div class="feature-item glass-effect bloom-effect" style="
+                        padding: 1.2rem;
+                        border-radius: 12px;
+                        margin-bottom: 1rem;
+                        transition: transform 0.3s ease;"
+                        onmouseover="this.style.transform='scale(1.02)'"
+                        onmouseout="this.style.transform='scale(1)'">
+                        <i class="fas fa-coins" style="font-size: 1.8rem; margin-bottom: 0.8rem; color: #FFD700;"></i>
                         <div class="feature-text">
-                            <h3 style="font-size: 1.2rem;">Wallet Integrada</h3>
-                            <p style="font-size: 0.9rem;">Gestiona tus TkensKircho</p>
+                            <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem;">Sistema de Recompensas</h3>
+                            <p style="opacity: 0.9;">Gana puntos por visitar lugares turísticos, compartir fotos y reseñas de tus experiencias, y participar en la comunidad. Canjea tus puntos acumulados por descuentos exclusivos en hoteles de 3-5 estrellas, restaurantes tradicionales y de alta cocina, tours guiados, museos, sitios arqueológicos y otras atracciones turísticas asociadas. Mientras más interactúes con la app, mayores serán tus recompensas y beneficios.</p>
                         </div>
                     </div>
 
-                    <div class="download-section" style="text-align: center; padding: 1rem;">
-                        <h3 style="margin-bottom: 1rem;">Descarga Ahora</h3>
-                        <div class="store-buttons" style="display: flex; flex-direction: column; gap: 1rem;">
-                            <a href="#" class="store-button" style="
+                    <!-- Sección de descarga -->
+                    <div class="download-section glass-effect" style="text-align: center; margin-top: 2rem; padding: 1.5rem; border-radius: 12px;">
+                        <h3 style="margin-bottom: 1.2rem; color: #4CAF50; font-size: 1.3rem;">Descarga Ahora</h3>
+                        <div class="store-buttons" style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+                            <a href="https://apps.apple.com/bo/app/quiago" target="_blank" class="store-button glow-hover" style="
                                 background: #000;
-                                padding: 0.5rem;
-                                border-radius: 8px;">
-                                <img src="../images/app-store.png" alt="App Store" style="height: 35px;">
+                                padding: 0.8rem;
+                                width: 80%;
+                                border-radius: 10px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 0.5rem;
+                                text-decoration: none;
+                                color: #ffffff;
+                                transition: all 0.3s ease;"
+                                onmouseover="this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.transform='scale(1)'">
+                                <i class="fab fa-apple" style="font-size: 1.8rem; color: #ffffff;"></i>
+                                <div style="text-align: left;">
+                                    <div style="font-size: 0.7rem;">Descarga en</div>
+                                    <div style="font-size: 1.1rem;">App Store</div>
+                                </div>
                             </a>
-                            <a href="#" class="store-button" style="
+                            <a href="https://play.google.com/store/apps/details?id=com.quiago" target="_blank" class="store-button glow-hover" style="
                                 background: #000;
-                                padding: 0.5rem;
-                                border-radius: 8px;">
-                                <img src="../images/play-store.png" alt="Play Store" style="height: 35px;">
+                                padding: 0.8rem;
+                                width: 80%;
+                                border-radius: 10px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 0.5rem;
+                                text-decoration: none;
+                                color: #ffffff;
+                                transition: all 0.3s ease;"
+                                onmouseover="this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.transform='scale(1)'">
+                                <i class="fab fa-google-play" style="font-size: 1.8rem; color: #4CAF50;"></i>
+                                <div style="text-align: left;">
+                                    <div style="font-size: 0.7rem;">Disponible en</div>
+                                    <div style="font-size: 1.1rem;">Play Store</div>
+                                </div>
+                            </a>
+
+                            <a href="../downloads/quiago.apk" download class="store-button glow-hover" style="
+                                background: #1a1f35;
+                                padding: 0.8rem;
+                                width: 80%;
+                                border-radius: 10px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 0.5rem;
+                                text-decoration: none;
+                                color: #ffffff;
+                                transition: all 0.3s ease;
+                                margin-top: 1rem;"
+                                onmouseover="this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.transform='scale(1)'">
+                                <i class="fas fa-download" style="font-size: 1.8rem; color: #4CAF50;"></i>
+                                <div style="text-align: left;">
+                                    <div style="font-size: 0.7rem;">Descarga</div>
+                                    <div style="font-size: 1.1rem;">Directa APK</div>
+                                </div>
                             </a>
                         </div>
-                    </div>
-
-                    <div class="back-section" style="text-align: center; padding: 2rem;">
-                        <a href="../quiago.html" style="
-                            display: inline-flex;
-                            align-items: center;
-                            gap: 0.5rem;
-                            text-decoration: none;
-                            color: #fff;
-                            background: rgba(255,255,255,0.1);
-                            padding: 0.8rem 1.5rem;
-                            border-radius: 8px;
-                            transition: all 0.3s ease;">
-                            <i class="fas fa-arrow-left"></i>
-                            <span>Volver a Inicio</span>
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
+        [... Rest of mobile view code remains unchanged ...]
     </section>
 
     <script>
@@ -212,6 +464,86 @@
 
         window.addEventListener('load', checkViewport);
         window.addEventListener('resize', checkViewport);
+
+        // Animaciones CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rotate {
+                from { transform: translate(-50%, -50%) rotate(0deg); }
+                to { transform: translate(-50%, -50%) rotate(360deg); }
+            }
+            @keyframes orbit {
+                from { transform: rotate(0deg) translateX(50px); }
+                to { transform: rotate(360deg) translateX(50px); }
+            }
+            @keyframes float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
+
+
+    <footer class="web3-footer" style="background-color: #050411; text-align: center;">
+        <div class="footer-waves">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#3a2b6d" fill-opacity="0.3" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+        <div class="footer-content" style="max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; display: flex; justify-content: space-around; flex-wrap: wrap;">
+            <div class="footer-section" style="min-width: 250px; margin: 1rem; text-align: center;">
+                <h4 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #fff; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">QuiagoApp</h4>
+                <div class="qr-container glass-effect" id="app-qr" style="padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <!-- QR code will be generated via JavaScript -->
+                    <script>
+                        window.onload = function() {
+                            var qr = qrcode(4, 'L');
+                            qr.addData('https://quiagoapp.com/download');
+                            qr.make();
+                            document.getElementById('app-qr').innerHTML = qr.createImgTag(5);
+                        }
+                    </script>
+                </div>
+                <p style="font-size: 1rem; color: #a8b2d1;">Escanea para descargar la app</p>
+            </div>
+            <div class="footer-section" style="min-width: 250px; margin: 1rem; text-align: center;">
+                <h4 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #fff; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">Comunidad</h4>
+                <div class="social-links" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 200px; margin: 0 auto;">
+                    <a href="https://discord.gg/quiago" class="social-icon discord" style="font-size: 2rem; transition: transform 0.3s; color: #7289da;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                        <i class="fab fa-discord" style="font-size: 2.5rem;"></i>
+                    </a>
+                    <a href="https://t.me/quiagoapp" class="social-icon telegram" style="font-size: 2rem; transition: transform 0.3s; color: #0088cc;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                        <i class="fab fa-telegram" style="font-size: 2.5rem;"></i>
+                    </a>
+                    <a href="https://twitter.com/quiagoapp" class="social-icon twitter" style="font-size: 2rem; transition: transform 0.3s; color: #1da1f2;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                        <i class="fab fa-twitter" style="font-size: 2.5rem;"></i>
+                    </a>
+                    <a href="https://instagram.com/quiagoapp" class="social-icon instagram" style="font-size: 2rem; transition: transform 0.3s; color: #e1306c;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                        <i class="fab fa-instagram" style="font-size: 2.5rem;"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section" style="min-width: 250px; margin: 1rem; text-align: center;">
+                <h4 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #fff; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">Enlaces Útiles</h4>
+                <ul class="footer-links" style="list-style: none;">
+                    <li style="margin-bottom: 1rem;"><a href="#" style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; color: #a8b2d1; text-decoration: none; transition: color 0.3s;"><i class="fa-regular fa-file-lines"></i> Documentación</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="#" style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; color: #a8b2d1; text-decoration: none; transition: color 0.3s;"><i class="fa-solid fa-book"></i> Whitepaper</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="#" style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; color: #a8b2d1; text-decoration: none; transition: color 0.3s;"><i class="fa-solid fa-code"></i> API</a></li>
+                    <li style="margin-bottom: 1rem;"><a href="#" style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; color: #a8b2d1; text-decoration: none; transition: color 0.3s;"><i class="fa-solid fa-shield-halved"></i> Política de Privacidad</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.1); padding: 2rem 0; text-align: center; background: rgba(0,0,0,0.2);">
+            <p style="margin-bottom: 1.5rem; color: #a8b2d1; font-size: 1.1rem;">© 2024 QuiagoApp - Potenciado por BS-Xiom</p>
+            <div class="footer-badges" style="display: flex; justify-content: center; gap: 1.5rem;">
+                <span class="badge" style="background: rgba(255,255,255,0.1); padding: 0.8rem 1.5rem; border-radius: 25px; backdrop-filter: blur(5px);"><i class="fa-solid fa-lock"></i> Web Demolach</span>
+                <span class="badge" style="background: rgba(255,255,255,0.1); padding: 0.8rem 1.5rem; border-radius: 25px; backdrop-filter: blur(5px);"><i class="fa-solid fa-diagram-project"></i> BS-Xiom</span>
+            </div>
+        </div>
+    </footer>
+
+    
+
 </body>
 </html>
