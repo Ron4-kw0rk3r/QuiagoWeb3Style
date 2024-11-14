@@ -1,0 +1,645 @@
+/* Variables actualizadas */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --primary-color: #160642;
+    --secondary-color: #2cd3e1;
+    --accent-color: #ff3e88;
+    --dark-purple: #010118;
+    --medium-purple: #100120;
+    --light-purple: #2546a1;
+    --background: #ffffff;
+    --text-primary: #fdfdfd;
+    --text-secondary: #b4b4bb;
+    --card-shadow: 0 10px 30px rgba(42, 9, 68, 0.15);
+    --gradient-purple: linear-gradient(135deg, #2A0944, #19082b, #30061c);
+    --nav-bg: #ffffff;
+    --nav-text: #120944;
+    --nav-hover: #180b30;
+    --nav-active: #09001a;
+    --nav-shadow: 0 2px 10px rgba(42, 9, 68, 0.1);
+}
+
+/* Estilos base actualizados */
+body {
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedores con efecto curvo y sombra */
+.content-section {
+    background: var(--gradient-purple);
+    border-radius: 25px;
+    margin: 2rem auto;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    max-width: 1200px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sección antes del footer */
+.pre-footer-section {
+    background: linear-gradient(135deg, #1a0033, #2a0044, #330033);
+    padding: 4rem 2rem;
+    margin-top: 3rem;
+    border-radius: 25px 25px 0 0;
+    box-shadow: 0 -5px 20px rgba(26, 0, 51, 0.3);
+}
+
+
+.content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(42, 9, 68, 0.9), rgba(59, 24, 95, 0.8));
+    z-index: 1;
+}
+
+.content-section > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Section actualizado */
+.hero {
+    background: linear-gradient(135deg, #040007, #04021a, #09062e);
+    border-radius: 0 0 50px 50px;
+    margin-bottom: 3rem;
+    padding: 4rem 2rem;
+    box-shadow: var(--card-shadow);
+    margin-top: 45px;
+    color: #fdfdfd;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+
+}
+
+/* Cards con efecto de profundidad */
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 1rem;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.25);
+}
+
+/* Sección de Mockups actualizada */
+.mockups-section {
+    background: linear-gradient(135deg, #1a0033, #2b0052);
+    border-radius: 25px;
+    margin: 3rem auto;
+    padding: 3rem 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+/* Navegación actualizada */
+.navbar {
+    background: var(--nav-bg);
+    box-shadow: var(--nav-shadow);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo h1 {
+    color: var(--nav-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--nav-text);
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-menu li a i {
+    font-size: 1.2rem;
+}
+
+.nav-menu li a:hover {
+    color: var(--nav-hover);
+    background: rgba(42, 9, 68, 0.05);
+    transform: translateY(-2px);
+}
+
+.nav-menu li a.active {
+    color: var(--nav-active);
+    background: rgba(42, 9, 68, 0.1);
+}
+
+/* Menú móvil */
+@media screen and (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: var(--nav-bg);
+        padding: 1rem;
+        display: flex;
+        justify-content: space-around;
+        box-shadow: 0 -2px 10px rgba(42, 9, 68, 0.1);
+    }
+
+    .nav-menu li a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .nav-menu li a i {
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+        color: var(--nav-text);
+    }
+
+    .nav-menu li a:hover i,
+    .nav-menu li a.active i {
+        color: var(--nav-active);
+    }
+
+    .nav-menu li a::before {
+        display: none; /* Removemos los pseudo-elementos en móvil */
+    }
+
+    /* Indicador de página activa en móvil */
+    .nav-menu li a.active {
+        position: relative;
+    }
+
+    .nav-menu li a.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 5px;
+        height: 5px;
+        background: var(--nav-active);
+        border-radius: 50%;
+    }
+}
+
+
+/* Animaciones del nav */
+.nav-menu li a {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--nav-active);
+    transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
+}
+
+/* Efecto de presión en los botones del nav */
+.nav-menu li a:active {
+    transform: scale(0.95);
+}
+
+/* Ajustes para el logo en el nav */
+.logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Ajuste del contenido principal para el nav fijo */
+main {
+    padding-top: 80px; /* Altura del navbar */
+}
+
+/* Sección de tokens */
+.token-ecosystem {
+    border-radius: 25px;
+    padding: 3rem 2rem;
+    margin: 3rem auto;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 10;
+    transform: translateZ(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Sección de descarga */
+.download-section {
+    background: var(--gradient-purple);
+    border-radius: 25px;
+    padding: 3rem 2rem;
+    margin: 3rem auto;
+    box-shadow: var(--card-shadow);
+}
+
+/* Footer actualizado */
+.web3-footer {
+    background: var(--dark-purple);
+    border-radius: 25px 25px 0 0;
+    margin-top: 3rem;
+    padding-top: 3rem;
+}
+
+/* Efectos de hover mejorados */
+.nav-menu li a:hover {
+    color: var(--light-purple);
+    text-shadow: 0 0 10px rgba(161, 37, 104, 0.5);
+}
+
+/* Botones actualizados */
+.cta-button {
+    background: linear-gradient(45deg, var(--dark-purple), var(--light-purple));
+    border: none;
+    border-radius: 30px;
+    padding: 1rem 2rem;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(42, 9, 68, 0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(42, 9, 68, 0.4);
+}
+
+/* Efectos de glassmorphism */
+.glass-card {
+    background: rgba(42, 9, 68, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+}
+/* Estilos para los botones después de la imagen */
+.cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.cta-button.primary {
+    background: linear-gradient(45deg, #0f0624, #641b40);
+    font-size: 1.1rem;
+}
+
+.cta-button.secondary {
+    background: linear-gradient(45deg, #12243f, #060620);
+    font-size: 1.1rem;
+}
+
+.cta-button.tertiary {
+    background: linear-gradient(45deg, #0f0000, #641b40);
+    font-size: 1.1rem;
+}
+
+/* Efectos para los botones */
+.pulse-effect {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    }
+}
+
+.glow-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.glow-effect:after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    transform: rotate(45deg);
+    animation: glow 3s infinite;
+}
+
+@keyframes glow {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.shine-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.shine-effect:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+}
+
+/* Responsive para los botones */
+@media screen and (max-width: 768px) {
+    .cta-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-button {
+        width: 100%;
+        max-width: 300px;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Estilos para el mockup móvil */
+.restrictive-mocks-dev {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .content-section {
+        margin: 1rem;
+        margin-top: 60px;
+        padding: 1.5rem;
+        border-radius: 20px;
+    }
+
+    .hero {
+        border-radius: 0 0 30px 30px;
+        padding: 2rem 1rem;
+    }
+
+    .feature-card {
+        margin: 0.5rem;
+        padding: 3.5rem;
+    }
+}
+
+/* Configuración para Desktop (> 1024px) */
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    /* Nav para desktop */
+    .navbar {
+        height: 80px;
+    }
+
+    .nav-menu {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .mobile-nav {
+        display: none;
+    }
+
+    /* Layout de contenido para desktop */
+    .content-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .hero-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .mockups-container {
+        display: flex;
+        gap: 4rem;
+        
+    }
+}
+
+/* Configuración para Tablets (768px - 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .hero-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+/* Configuración para Móvil (< 768px) */
+@media screen and (max-width: 767px) {
+    /* Estructura base móvil */
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Nav móvil con iconos */
+    .navbar .nav-menu {
+        display: none; /* Ocultamos el nav normal */
+    }
+
+    .mobile-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: var(--nav-bg);
+        padding: 0.8rem 1rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.3rem;
+        color: var(--nav-text);
+        text-decoration: none;
+        font-size: 0.8rem;
+    }
+
+    .mobile-nav-item i {
+        font-size: 1.5rem;
+    }
+
+    .mobile-nav-item.active {
+        color: var(--nav-active);
+    }
+
+    /* Ajustes de contenido para móvil */
+    main {
+        padding-bottom: 70px; /* Espacio para nav móvil */
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 2rem 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    /* Cards y secciones en móvil */
+    .feature-card {
+        margin: 1rem 0;
+    }
+
+    .mockups-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Ajustes específicos para contenido en móvil */
+    .token-ecosystem .token-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .download-section {
+        text-align: center;
+    }
+
+    .store-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* Estilos compartidos para ambas vistas */
+.feature-card {
+    background: var(--gradient-purple);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Animaciones y transiciones */
+.mobile-nav-item {
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-item:active {
+    transform: scale(0.95);
+}
+
+/* Ajustes de altura y scroll */
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Mejoras de rendimiento */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}

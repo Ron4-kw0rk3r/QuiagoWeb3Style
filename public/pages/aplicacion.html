@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación - QuiagoApp</title>
+    <link rel="stylesheet" href="../styles/quiago.css">
+    <link rel="stylesheet" href="../styles/aplicacion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body style="background: #ffffff; margin: 0; font-family: 'Segoe UI', sans-serif;">
+    <section class="app-section" style="padding: 4rem 2rem;">
+        <h2 class="glowing-text" style="text-align: center; font-size: 2.5rem; color: #1a1f35; margin-bottom: 3rem;">
+            Nuestra Aplicación
+        </h2>
+
+        <!-- Vista Desktop -->
+        <div class="desktop-view" style="display: block;">
+            <div class="app-container" style="
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                gap: 4rem;
+                align-items: center;
+                background: linear-gradient(145deg, #020003, #010f27);
+                padding: 3rem;
+                border-radius: 20px;
+                color: #ffffff;">
+
+                <div class="app-preview" style="flex: 1;">
+                    <div class="phone-mockup" style="
+                        background: #000;
+                        padding: 15px;
+                        border-radius: 40px;
+                        box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+                        <img src="../images/app-preview.png" alt="QuiagoApp Preview" style="
+                            width: 100%;
+                            border-radius: 25px;
+                            display: block;">
+                    </div>
+                </div>
+
+                <div class="features-list" style="flex: 1;">
+                    <div class="feature-item" style="
+                        background: rgba(255,255,255,0.1);
+                        padding: 1.5rem;
+                        border-radius: 15px;
+                        margin-bottom: 1.5rem;
+                        backdrop-filter: blur(10px);">
+                        <i class="fas fa-map-marked-alt" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                        <div class="feature-text">
+                            <h3 style="margin-bottom: 0.5rem;">Mapas Offline</h3>
+                            <p style="opacity: 0.9;">Explora Bolivia sin necesidad de conexión a internet. Descarga mapas detallados y guías turísticas.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item" style="
+                        background: rgba(255,255,255,0.1);
+                        padding: 1.5rem;
+                        border-radius: 15px;
+                        margin-bottom: 1.5rem;
+                        backdrop-filter: blur(10px);">
+                        <i class="fas fa-camera" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                        <div class="feature-text">
+                            <h3 style="margin-bottom: 0.5rem;">Realidad Aumentada</h3>
+                            <p style="opacity: 0.9;">Descubre información histórica en tiempo real. Apunta tu cámara a monumentos y lugares históricos.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item" style="
+                        background: rgba(255,255,255,0.1);
+                        padding: 1.5rem;
+                        border-radius: 15px;
+                        margin-bottom: 1.5rem;
+                        backdrop-filter: blur(10px);">
+                        <i class="fas fa-wallet" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                        <div class="feature-text">
+                            <h3 style="margin-bottom: 0.5rem;">Wallet Integrada</h3>
+                            <p style="opacity: 0.9;">Gestiona tus TkensKircho directamente en la app. Paga servicios y obtén recompensas.</p>
+                        </div>
+                    </div>
+
+                    <div class="download-section" style="text-align: center; margin-top: 2rem;">
+                        <h3 style="margin-bottom: 1.5rem;">Descarga Ahora</h3>
+                        <div class="store-buttons" style="display: flex; gap: 1rem; justify-content: center;">
+                            <a href="#" class="store-button" style="
+                                background: #000;
+                                padding: 0.8rem 2rem;
+                                border-radius: 10px;
+                                transition: transform 0.3s ease;">
+                                <img src="../images/app-store.png" alt="App Store" style="height: 40px;">
+                            </a>
+                            <a href="#" class="store-button" style="
+                                background: #000;
+                                padding: 0.8rem 2rem;
+                                border-radius: 10px;
+                                transition: transform 0.3s ease;">
+                                <img src="../images/play-store.png" alt="Play Store" style="height: 40px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vista Mobile -->
+        <div class="mobile-view" style="display: none;">
+            <div class="app-container" style="
+                padding: 1rem;
+                background: linear-gradient(145deg, #020003, #010f27);
+                border-radius: 20px;
+                color: #ffffff;">
+
+                <div class="app-preview" style="margin-bottom: 2rem;">
+                    <img src="../images/app-preview.png" alt="QuiagoApp Preview" style="
+                        width: 100%;
+                        max-width: 300px;
+                        margin: 0 auto;
+                        display: block;
+                        border-radius: 15px;">
+                </div>
+
+                <div class="features-list">
+                    <div class="feature-item" style="
+                        background: rgba(255,255,255,0.1);
+                        padding: 1rem;
+                        border-radius: 10px;
+                        margin-bottom: 1rem;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                        <div class="feature-text">
+                            <h3 style="font-size: 1.2rem;">Mapas Offline</h3>
+                            <p style="font-size: 0.9rem;">Explora Bolivia sin conexión</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item" style="
+                        background: rgba(255,255,255,0.1);
+                        padding: 1rem;
+                        border-radius: 10px;
+                        margin-bottom: 1rem;">
+                        <i class="fas fa-camera" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                        <div class="feature-text">
+                            <h3 style="font-size: 1.2rem;">Realidad Aumentada</h3>
+                            <p style="font-size: 0.9rem;">Información histórica en vivo</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item" style="
+                        background: rgba(255,255,255,0.1);
+                        padding: 1rem;
+                        border-radius: 10px;
+                        margin-bottom: 1rem;">
+                        <i class="fas fa-wallet" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                        <div class="feature-text">
+                            <h3 style="font-size: 1.2rem;">Wallet Integrada</h3>
+                            <p style="font-size: 0.9rem;">Gestiona tus TkensKircho</p>
+                        </div>
+                    </div>
+
+                    <div class="download-section" style="text-align: center; padding: 1rem;">
+                        <h3 style="margin-bottom: 1rem;">Descarga Ahora</h3>
+                        <div class="store-buttons" style="display: flex; flex-direction: column; gap: 1rem;">
+                            <a href="#" class="store-button" style="
+                                background: #000;
+                                padding: 0.5rem;
+                                border-radius: 8px;">
+                                <img src="../images/app-store.png" alt="App Store" style="height: 35px;">
+                            </a>
+                            <a href="#" class="store-button" style="
+                                background: #000;
+                                padding: 0.5rem;
+                                border-radius: 8px;">
+                                <img src="../images/play-store.png" alt="Play Store" style="height: 35px;">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="back-section" style="text-align: center; padding: 2rem;">
+                        <a href="../quiago.html" style="
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            text-decoration: none;
+                            color: #fff;
+                            background: rgba(255,255,255,0.1);
+                            padding: 0.8rem 1.5rem;
+                            border-radius: 8px;
+                            transition: all 0.3s ease;">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Volver a Inicio</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Script para manejar la vista responsive
+        function checkViewport() {
+            const mobileView = document.querySelector('.mobile-view');
+            const desktopView = document.querySelector('.desktop-view');
+            
+            if (window.innerWidth <= 768) {
+                mobileView.style.display = 'block';
+                desktopView.style.display = 'none';
+            } else {
+                mobileView.style.display = 'none';
+                desktopView.style.display = 'block';
+            }
+        }
+
+        window.addEventListener('load', checkViewport);
+        window.addEventListener('resize', checkViewport);
+    </script>
+</body>
+</html>
