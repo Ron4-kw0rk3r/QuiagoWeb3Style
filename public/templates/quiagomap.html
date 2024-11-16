@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuiagoMap - Explorador de Rutas</title>
+    
+    <!-- Leaflet CSS y JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Leaflet Routing Machine -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+        
+        .search-container {
+            position: absolute;
+            top: 20px;
+            left: 60px;
+            z-index: 1000;
+            width: 300px;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            font-size: 16px;
+        }
+        
+        .controls-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .control-button {
+            background: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-button:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        
+        .home-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #1a1f35;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <div class="search-container">
+        <input type="text" class="search-box" placeholder="Buscar ubicación...">
+    </div>
+    
+    <div class="controls-container">
+        <button class="control-button" onclick="getCurrentLocation()">
+            <i class="fas fa-location-arrow"></i> Mi Ubicación
+        </button>
+        <button class="control-button" onclick="toggleRoutingMode()">
+            <i class="fas fa-route"></i> Modo Ruta
+        </button>
+    </div>
+    
+    <button class="home-button" onclick="window.location.href='../index.html'">
+        <i class="fas fa-home"></i> Volver al Inicio
+    </button>
+
+    <script>
+        let map;
+        let routingControl;
+        let isRoutingMode = false;
+        let markers = [];
+        
+        // Inicializar mapa
+        function initMap() {
+            map = L.map('map').setView([-16.5, -64.5], 6); // Centro de Bolivia
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            // Configurar búsqueda
+            const searchBox = document.querySelector('.search-box');
+            searchBox.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchLocation(this.value);
+                }
+            });
+        }
+        
+        // Obtener ubicación actual
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    
+                    map.setView([lat, lng], 15);
+                    
+                    L.marker([lat, lng], {
+                        icon: L.icon({
+                            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+                            iconSize: [25, 41],
+                            iconAnchor: [12, 41]
+                        })
+                    }).addTo(map)
+                    .bindPopup('Tu ubicación actual')
+                    .openPopup();
+                });
+            }
+        }
+        
+        // Búsqueda de ubicaciones
+        function searchLocation(query) {
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        const location = data[0];
+                        map.setView([location.lat, location.lon], 15);
+                        
+                        const marker = L.marker([location.lat, location.lon]).addTo(map)
+                            .bindPopup(location.display_name)
+                            .openPopup();
+                            
+                        markers.push(marker);
+                    }
+                });
+        }
+        
+        // Modo de ruteo
+        function toggleRoutingMode() {
+            isRoutingMode = !isRoutingMode;
+            
+            if (isRoutingMode) {
+                if (routingControl) {
+                    map.removeControl(routingControl);
+                }
+                
+                routingControl = L.Routing.control({
+                    waypoints: [],
+                    routeWhileDragging: true,
+                    router: L.Routing.osrmv1({
+                        serviceUrl: 'https://router.project-osrm.org/route/v1'
+                    })
+                }).addTo(map);
+                
+                alert('Modo ruta activado. Haz clic en el mapa para establecer puntos de inicio y destino.');
+            } else {
+                if (routingControl) {
+                    map.removeControl(routingControl);
+                    routingControl = null;
+                }
+            }
+        }
+        
+        // Inicializar mapa al cargar
+        window.onload = initMap;
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</body>
+</html>
