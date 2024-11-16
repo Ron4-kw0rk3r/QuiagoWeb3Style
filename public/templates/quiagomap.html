@@ -85,6 +85,18 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.4);
         }
+
+        .route-info {
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            z-index: 1000;
+            max-width: 300px;
+        }
     </style>
 </head>
 <body>
@@ -101,17 +113,28 @@
         <button class="control-button" onclick="toggleRoutingMode()">
             <i class="fas fa-route"></i> Modo Ruta
         </button>
+        <button class="control-button" onclick="clearRoute()">
+            <i class="fas fa-trash"></i> Limpiar Ruta
+        </button>
     </div>
     
     <button class="home-button" onclick="window.location.href='../index.html'">
         <i class="fas fa-home"></i> Volver al Inicio
     </button>
 
+    <div id="routeInfo" class="route-info" style="display: none;">
+        <h3>Información de la Ruta</h3>
+        <p id="routeDistance"></p>
+        <p id="routeDuration"></p>
+    </div>
+
     <script>
         let map;
         let routingControl;
         let isRoutingMode = false;
         let markers = [];
+        let startPoint = null;
+        let endPoint = null;
         
         // Inicializar mapa
         function initMap() {
@@ -129,6 +152,13 @@
                     searchLocation(this.value);
                 }
             });
+
+            // Agregar evento de clic al mapa para el modo ruta
+            map.on('click', function(e) {
+                if (isRoutingMode) {
+                    addRoutePoint(e.latlng);
+                }
+            });
         }
         
         // Obtener ubicación actual
@@ -140,7 +170,7 @@
                     
                     map.setView([lat, lng], 15);
                     
-                    L.marker([lat, lng], {
+                    const currentLocationMarker = L.marker([lat, lng], {
                         icon: L.icon({
                             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
                             iconSize: [25, 41],
@@ -149,6 +179,8 @@
                     }).addTo(map)
                     .bindPopup('Tu ubicación actual')
                     .openPopup();
+
+                    markers.push(currentLocationMarker);
                 });
             }
         }
@@ -171,30 +203,89 @@
                 });
         }
         
-        // Modo de ruteo
+        // Modo de ruteo mejorado
         function toggleRoutingMode() {
             isRoutingMode = !isRoutingMode;
+            startPoint = null;
+            endPoint = null;
             
             if (isRoutingMode) {
-                if (routingControl) {
-                    map.removeControl(routingControl);
-                }
-                
-                routingControl = L.Routing.control({
-                    waypoints: [],
-                    routeWhileDragging: true,
-                    router: L.Routing.osrmv1({
-                        serviceUrl: 'https://router.project-osrm.org/route/v1'
-                    })
-                }).addTo(map);
-                
-                alert('Modo ruta activado. Haz clic en el mapa para establecer puntos de inicio y destino.');
+                clearRoute();
+                alert('Modo ruta activado. Haz clic en el mapa para marcar el punto de inicio y luego el destino.');
             } else {
-                if (routingControl) {
-                    map.removeControl(routingControl);
-                    routingControl = null;
-                }
+                clearRoute();
+                alert('Modo ruta desactivado');
             }
+        }
+
+        // Agregar punto de ruta
+        function addRoutePoint(latlng) {
+            if (!startPoint) {
+                startPoint = latlng;
+                L.marker(startPoint, {
+                    icon: L.icon({
+                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41]
+                    })
+                }).addTo(map).bindPopup('Punto de inicio');
+            } else if (!endPoint) {
+                endPoint = latlng;
+                L.marker(endPoint, {
+                    icon: L.icon({
+                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41]
+                    })
+                }).addTo(map).bindPopup('Punto de destino');
+                
+                calculateRoute();
+            }
+        }
+
+        // Calcular y mostrar ruta
+        function calculateRoute() {
+            if (routingControl) {
+                map.removeControl(routingControl);
+            }
+
+            routingControl = L.Routing.control({
+                waypoints: [
+                    L.latLng(startPoint.lat, startPoint.lng),
+                    L.latLng(endPoint.lat, endPoint.lng)
+                ],
+                routeWhileDragging: true,
+                router: L.Routing.osrmv1({
+                    serviceUrl: 'https://router.project-osrm.org/route/v1'
+                }),
+                lineOptions: {
+                    styles: [{color: '#1a1f35', weight: 4}]
+                }
+            }).addTo(map);
+
+            routingControl.on('routesfound', function(e) {
+                const routes = e.routes;
+                const summary = routes[0].summary;
+                
+                // Mostrar información de la ruta
+                document.getElementById('routeInfo').style.display = 'block';
+                document.getElementById('routeDistance').innerHTML = 
+                    `<i class="fas fa-road"></i> Distancia: ${(summary.totalDistance / 1000).toFixed(1)} km`;
+                document.getElementById('routeDuration').innerHTML = 
+                    `<i class="fas fa-clock"></i> Tiempo estimado: ${Math.round(summary.totalTime / 60)} minutos`;
+            });
+        }
+
+        // Limpiar ruta
+        function clearRoute() {
+            if (routingControl) {
+                map.removeControl(routingControl);
+            }
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+            startPoint = null;
+            endPoint = null;
+            document.getElementById('routeInfo').style.display = 'none';
         }
         
         // Inicializar mapa al cargar
